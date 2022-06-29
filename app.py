@@ -22,8 +22,24 @@ def load_data():
 
 df = load_data()
 
+filter_duration = {
+    730: "Past 2 Years", 
+    365: "Past Year", 
+    183: "Past 6 Months", 
+    91: "Past 3 Months", 
+    31: "Past Month",
+    15: "Past 2 Weeks",
+    7: "Past Week"
+}
+
+def format_func(option):
+    return filter_duration[option]
+
+
+option = st.selectbox("Filter", options=list(filter_duration.keys()), format_func=format_func, index=0)
+
 today = datetime.now()
-n_days_ago = today - timedelta(days=365)
+n_days_ago = today - timedelta(days=option)
 
 df = df.loc[df['location'] == 'Philippines']
 df = df.loc[df['date'] >= str(n_days_ago.date())]
