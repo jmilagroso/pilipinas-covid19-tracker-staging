@@ -36,6 +36,10 @@ def format_func(option):
     return filter_duration[option]
 
 
+st.markdown("<h1 style='text-align: center;'>PH Covid-19 Tracker</h1>", unsafe_allow_html=True)
+
+st.write("Source: https://covid.ourworldindata.org")
+
 option = st.selectbox("Filter", options=list(filter_duration.keys()), format_func=format_func, index=0)
 
 today = datetime.now()
@@ -43,10 +47,6 @@ n_days_ago = today - timedelta(days=option)
 
 df = df.loc[df['location'] == 'Philippines']
 df = df.loc[df['date'] >= str(n_days_ago.date())]
-
-st.markdown("<h1 style='text-align: center;'>PH Covid-19 Tracker</h1>", unsafe_allow_html=True)
-
-st.write("Source: https://covid.ourworldindata.org")
 
 fig1 = px.bar(
     df, 
