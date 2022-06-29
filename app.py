@@ -28,8 +28,8 @@ filter_duration = {
     183: "Past 6 Months", 
     91: "Past 3 Months", 
     31: "Past Month",
-    15: "Past 2 Weeks",
-    7: "Past Week"
+    16: "Past 2 Weeks",
+    8: "Past 7 Days"
 }
 
 def format_func(option):
